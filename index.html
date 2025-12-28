@@ -15,111 +15,147 @@
     animation: parpadeo 1s infinite ease-in-out;
   }
 
-  /* --- ESTILOS NUEVA SECCIÓN DE CONTACTO --- */
-  /* Diseño "Glass & Neon" Premium */
-  .promo-section {
-    position: relative;
-    margin: 80px auto 50px;
-    max-width: 90%;
-    width: 750px;
-    background: #0f0f0f; /* Fondo base */
-    border-radius: 24px;
+  /* Animación de entrada suave */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* --- NUEVO DISEÑO UNIFICADO (CONTACTO + REDES) --- */
+  .unified-footer-section {
+    margin-top: 80px;
+    padding: 0 20px 40px;
+    opacity: 0; /* Invisible al inicio */
+    animation: fadeInUp 1s ease-out forwards; /* Se ejecuta al cargar */
+  }
+
+  .connect-container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-    padding: 3px; /* Espacio para el borde animado */
-    isolation: isolate;
-  }
-
-  /* Borde animado rotativo (Efecto Radar) */
-  .promo-section::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(transparent, transparent, transparent, #d62976, #fa7e1e, #962fbf);
-    animation: rotate-border 4s linear infinite;
-    z-index: -1;
-  }
-  
-  .promo-section::after {
-    content: "";
-    position: absolute;
-    inset: 3px; /* Mismo que el padding */
-    background: #161616; /* Fondo interior */
-    border-radius: 21px;
-    z-index: -1;
-  }
-
-  @keyframes rotate-border {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  .promo-content {
-    position: relative;
-    z-index: 2;
-    padding: 50px 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background: radial-gradient(circle at top, rgba(131, 58, 180, 0.15), transparent 70%);
   }
 
-  .promo-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+  @media (min-width: 768px) {
+    .connect-container {
+      flex-direction: row;
+    }
+  }
+
+  /* Lado Izquierdo: Servicios */
+  .connect-services {
+    flex: 1;
+    padding: 40px;
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid #222;
+  }
+  @media (min-width: 768px) {
+    .connect-services {
+      border-bottom: none;
+      border-right: 1px solid #222;
+    }
+  }
+
+  .connect-services h2 {
+    font-size: 1.8rem;
     color: #fff;
-    text-transform: uppercase;
-    font-weight: 900;
-    letter-spacing: 1px;
-    text-shadow: 0 0 20px rgba(255,255,255,0.2);
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #fff, #ccc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  .promo-content p {
-    font-size: 1.1rem;
-    margin-bottom: 35px;
+  .connect-services p {
+    font-size: 1rem;
     color: #aaa;
-    max-width: 550px;
-    line-height: 1.6;
+    margin-bottom: 25px;
+    line-height: 1.5;
   }
 
-  /* Botón Instagram Estilo Oficial */
-  .insta-btn {
+  .service-btn {
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    gap: 10px;
+    width: fit-content;
+    background: linear-gradient(90deg, #d62976, #fa7e1e);
     color: white;
-    padding: 16px 40px;
-    border: none;
-    border-radius: 100px;
-    font-size: 1.1rem;
-    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 12px;
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 10px 25px rgba(220, 39, 67, 0.5);
-    position: relative;
-    overflow: hidden;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(214, 41, 118, 0.3);
   }
-  .insta-btn:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(220, 39, 67, 0.7);
+  .service-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(214, 41, 118, 0.5);
   }
-  /* Brillo al pasar el mouse */
-  .insta-btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: 0.5s;
+
+  /* Lado Derecho: Redes */
+  .connect-socials {
+    flex: 1;
+    padding: 40px;
+    background: #131313;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .insta-btn:hover::before {
-    left: 100%;
+  .connect-socials h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+  
+  .social-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .social-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1a1a1a;
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s;
+    border: 1px solid #2a2a2a;
+  }
+  .social-card:hover {
+    background: #222;
+    transform: translateX(5px);
+  }
+
+  /* Colores NEÓN específicos por red social */
+  .social-card.tiktok:hover {
+    border-color: #00f2ea; /* Azul Cyan TikTok */
+    box-shadow: 0 0 15px rgba(0, 242, 234, 0.6), 0 0 30px rgba(0, 242, 234, 0.2);
+  }
+
+  .social-card.youtube:hover {
+    border-color: #ff0000; /* Rojo YouTube */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.2);
+  }
+
+  .social-card span { font-size: 1.2rem; }
+  .social-card .arrow { color: #555; font-size: 0.9rem; }
+
+  .footer-copy {
+    text-align: center;
+    color: #444;
+    padding: 20px;
+    font-size: 0.85rem;
   }
 </style>
 </head>
@@ -213,35 +249,39 @@
   </div>
 </main>
 
-<!-- Nueva Sección de Servicios Web -->
-<section class="promo-section">
-  <div class="promo-content">
-    <h2>🔥 ¿Quieres tu propia Web?</h2>
-    <p>Diseños exclusivos, estructuras profesionales y animaciones de otro nivel para tu canal o proyecto. ¡Hablemos ahora!</p>
-    <a href="https://www.instagram.com/bairon_365?igsh=MWtucWo2eWg0OGp3NQ==" target="_blank" class="insta-btn">
-      <span style="font-size: 1.4rem;">📸</span> Escríbeme al Instagram
-    </a>
-  </div>
-</section>
+<!-- Nueva Sección Unificada: Contacto y Redes -->
+<div class="unified-footer-section">
+  <div class="connect-container">
+    <!-- Columna Izquierda: Servicios -->
+    <div class="connect-services">
+      <h2>🔥 ¿Quieres tu propia Web?</h2>
+      <p>Diseños exclusivos, estructuras profesionales y animaciones de otro nivel. ¡Hablemos ahora!</p>
+      <a href="https://www.instagram.com/bairon_365?igsh=MWtucWo2eWg0OGp3NQ==" target="_blank" class="service-btn">
+        <span>📸</span> Escríbeme al Instagram
+      </a>
+    </div>
 
-<footer class="footer-redes">
-  <h2>Sigueme En Mis Redes🚀</h2>
-  <div class="redes-container">
-    <a href="https://www.tiktok.com/@candelamusic3?_r=1&_t=ZM-92a6Li8L8YO" target="_blank" class="red-social tiktok">
-      <span class="social-icon">🎵</span>
-      <span class="social-text">TikTok</span>
-    </a>
-    <a href="https://youtube.com/@el_parche_yt?si=llzvLXyoyOwm6xqF" target="_blank" class="red-social youtube-main">
-      <span class="social-icon">📺</span>
-      <span class="social-text">Canal Principal</span>
-    </a>
-    <a href="https://www.youtube.com/@GameNexo11" target="_blank" class="red-social youtube-sec">
-      <span class="social-icon">▶️</span>
-      <span class="social-text">Canal Secundario</span>
-    </a>
+    <!-- Columna Derecha: Redes Sociales -->
+    <div class="connect-socials">
+      <h3>Sígueme en Redes 🚀</h3>
+      <div class="social-list">
+        <a href="https://www.tiktok.com/@candelamusic3?_r=1&_t=ZM-92a6Li8L8YO" target="_blank" class="social-card tiktok">
+          <div><span>🎵</span> TikTok</div>
+          <div class="arrow">➜</div>
+        </a>
+        <a href="https://youtube.com/@el_parche_yt?si=llzvLXyoyOwm6xqF" target="_blank" class="social-card youtube">
+          <div><span>📺</span> Canal Principal</div>
+          <div class="arrow">➜</div>
+        </a>
+        <a href="https://www.youtube.com/@GameNexo11" target="_blank" class="social-card youtube">
+          <div><span>▶️</span> Canal Secundario</div>
+          <div class="arrow">➜</div>
+        </a>
+      </div>
+    </div>
   </div>
-  <p class="copyright">© 2025 El Parche YT - Todos los derechos reservados</p>
-</footer>
+  <p class="footer-copy">© 2025 El Parche YT - Todos los derechos reservados</p>
+</div>
 
 <audio id="unlockSound" src="unlock.mp3"></audio>
 
