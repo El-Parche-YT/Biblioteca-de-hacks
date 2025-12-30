@@ -1,5 +1,6 @@
 // Elementos globales
 const unlockSound = document.getElementById("unlockSound");
+unlockSound.volume = 0.4; // Volumen al 40% para que sea un sonido suave y agradable
 
 // Inicializar todas las tarjetas de desbloqueo
 document.querySelectorAll('.unlock-card').forEach(initCard);
