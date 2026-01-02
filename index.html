@@ -700,6 +700,155 @@
     10% { opacity: 1; }
     100% { transform: translateY(-120vh) translateX(var(--drift)); opacity: 0; }
   }
+
+  /* --- BUSCADOR PROFESIONAL (V4 - Compacto & Autocomplete) --- */
+  .search-container {
+    max-width: 420px; /* Reducido de 550px para ser más compacto */
+    width: 85%;
+    margin: 20px auto 30px;
+    position: relative;
+    z-index: 50; /* Mayor z-index para que las sugerencias floten sobre todo */
+  }
+
+  .search-box-wrapper {
+    position: relative;
+    padding: 1px; /* Borde más fino y elegante */
+    border-radius: 50px;
+    background: linear-gradient(90deg, #333, #555, #333);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+  }
+
+  /* Animación del borde gradiente al enfocar */
+  .search-container:focus-within .search-box-wrapper {
+    background: linear-gradient(90deg, #ff0055, #ffae00, #00e676, #00f2ea, #ff0055);
+    background-size: 300% 100%;
+    animation: neonFlow 3s linear infinite;
+    box-shadow: 0 8px 25px rgba(255, 174, 0, 0.2);
+    transform: translateY(-2px);
+  }
+
+  @keyframes neonFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  .search-box-inner {
+    background: #0f0f0f;
+    border-radius: 48px;
+    display: flex;
+    align-items: center;
+    padding: 4px 4px 4px 15px; /* Padding reducido */
+    position: relative;
+  }
+
+  #searchInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 0.95rem; /* Texto un poco más pequeño */
+    font-weight: 500;
+    outline: none;
+    padding: 8px 0;
+  }
+
+  #searchInput::placeholder {
+    color: #666;
+    font-style: italic;
+    transition: color 0.3s;
+  }
+  
+  .search-container:focus-within #searchInput::placeholder {
+    color: #aaa;
+  }
+
+  /* Botón X para borrar */
+  .clear-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0 8px;
+    display: none; /* Oculto por defecto */
+    transition: color 0.3s;
+  }
+
+  .clear-btn:hover {
+    color: #ff3d00;
+  }
+
+  .search-btn {
+    background: linear-gradient(135deg, #ffae00, #ff3d00);
+    border: none;
+    width: 36px; /* Botón más pequeño */
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 8px rgba(255, 61, 0, 0.4);
+  }
+
+  .search-btn:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 0 15px rgba(255, 61, 0, 0.6);
+  }
+
+  .search-btn span {
+    font-size: 0.9rem;
+    color: #fff;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+  }
+
+  /* Lista de Sugerencias (Dropdown) */
+  .suggestions-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    right: 20px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-top: none;
+    border-radius: 0 0 15px 15px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    display: none; /* Oculto por defecto */
+    margin-top: 2px;
+    z-index: 100;
+  }
+
+  .suggestion-item {
+    padding: 10px 15px;
+    color: #ccc;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-bottom: 1px solid #2a2a2a;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .suggestion-item:last-child {
+    border-bottom: none;
+  }
+
+  .suggestion-item:hover {
+    background: #252525;
+    color: #fff;
+    padding-left: 20px; /* Efecto de desplazamiento al pasar mouse */
+  }
+
+  .suggestion-item span {
+    color: #ffae00;
+    font-size: 0.8rem;
+  }
 </style>
 </head>
 <body>
@@ -726,6 +875,20 @@
 </header>
 
 <main>
+  <!-- Buscador -->
+  <div class="search-container">
+    <div class="search-box-wrapper">
+      <div class="search-box-inner">
+        <input type="text" id="searchInput" placeholder="Buscar video o fecha..." autocomplete="off">
+        <button id="clearBtn" class="clear-btn">✖</button>
+        <button class="search-btn">
+          <span>🔍</span>
+        </button>
+      </div>
+    </div>
+    <div id="suggestionsList" class="suggestions-dropdown"></div>
+  </div>
+
   <!-- Tarjeta 1 -->
   <div class="unlock-card" data-id="1" data-wait="10">
     <div class="video-portada">
@@ -875,6 +1038,88 @@
     
     setTimeout(() => particle.remove(), 10000);
   }, 200); // Crea una partícula cada 200ms
+
+  // Lógica del Buscador Mejorada (V4)
+  const searchInput = document.getElementById('searchInput');
+  const clearBtn = document.getElementById('clearBtn');
+  const suggestionsList = document.getElementById('suggestionsList');
+  const cards = document.querySelectorAll('.unlock-card');
+  
+  // Recopilar todos los títulos para sugerencias
+  const allTitles = Array.from(cards).map(card => {
+    return {
+      title: card.querySelector('.titulo-fecha h1').innerText,
+      date: card.querySelector('.titulo-fecha p').innerText
+    };
+  });
+
+  function performSearch(term) {
+    term = term.toLowerCase();
+    cards.forEach(card => {
+      const title = card.querySelector('.titulo-fecha h1').innerText.toLowerCase();
+      const date = card.querySelector('.titulo-fecha p').innerText.toLowerCase();
+      
+      if (title.includes(term) || date.includes(term)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    // Mostrar u ocultar botón X
+    clearBtn.style.display = term.length > 0 ? 'block' : 'none';
+  }
+
+  function showSuggestions(term) {
+    suggestionsList.innerHTML = '';
+    if (term.length < 1) {
+      suggestionsList.style.display = 'none';
+      return;
+    }
+
+    const matches = allTitles.filter(item => 
+      item.title.toLowerCase().includes(term.toLowerCase()) || 
+      item.date.toLowerCase().includes(term.toLowerCase())
+    );
+
+    if (matches.length > 0) {
+      matches.slice(0, 5).forEach(match => { // Máximo 5 sugerencias
+        const div = document.createElement('div');
+        div.classList.add('suggestion-item');
+        div.innerHTML = `<span>🔍</span> ${match.title.substring(0, 25)}... <span style="margin-left:auto; font-size:0.7rem; opacity:0.7">${match.date}</span>`;
+        
+        div.addEventListener('click', () => {
+          searchInput.value = match.title;
+          performSearch(match.title);
+          suggestionsList.style.display = 'none';
+        });
+        suggestionsList.appendChild(div);
+      });
+      suggestionsList.style.display = 'block';
+    } else {
+      suggestionsList.style.display = 'none';
+    }
+  }
+
+  searchInput.addEventListener('input', (e) => {
+    const term = e.target.value;
+    performSearch(term);
+    showSuggestions(term);
+  });
+
+  // Evento para borrar
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    performSearch('');
+    suggestionsList.style.display = 'none';
+    searchInput.focus();
+  });
+
+  // Ocultar sugerencias al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-container')) {
+      suggestionsList.style.display = 'none';
+    }
+  });
 </script>
 </body>
 </html>
