@@ -12,6 +12,7 @@ function initCard(card) {
   // Elementos dentro de esta tarjeta específica
   const likeBtn = card.querySelector(".like-btn");
   const subBtn = card.querySelector(".sub-btn");
+  const subBtn2 = card.querySelector(".sub-btn-2");
   const downloadBtn = card.querySelector(".download-btn");
   const timerBox = card.querySelector(".timer");
   const countEl = card.querySelector(".count");
@@ -20,6 +21,7 @@ function initCard(card) {
   // Variables de estado locales para esta tarjeta
   let liked = false;
   let subscribed = false;
+  let subscribed2 = false;
   let countdownInterval;
 
   // Contador fake independiente
@@ -47,9 +49,21 @@ function initCard(card) {
     if (subscribed) return;
     window.open(subBtn.dataset.link, "_blank");
     subscribed = true;
-    subBtn.innerHTML = "✅ Suscripción Completada";
-    startCountdown(waitTime, () => unlockButton(false));
+    subBtn.innerHTML = "✅ Suscripción 1 Completada";
+    // Al terminar, desbloqueamos el botón 2 (si existe) o la descarga
+    startCountdown(waitTime, () => subBtn2 ? unlockSubBtn2(false) : unlockButton(false));
   };
+
+  // 3. Botón Suscribirse 2 (Nuevo)
+  if (subBtn2) {
+    subBtn2.onclick = () => {
+      if (subscribed2) return;
+      window.open(subBtn2.dataset.link, "_blank");
+      subscribed2 = true;
+      subBtn2.innerHTML = "✅ Suscripción 2 Completada";
+      startCountdown(waitTime, () => unlockButton(false));
+    };
+  }
 
   // 3. Botón Descarga
   downloadBtn.onclick = () => {
@@ -77,7 +91,14 @@ function initCard(card) {
     timerBox.classList.add("hidden");
     subBtn.disabled = false;
     subBtn.classList.remove("locked");
-    subBtn.innerHTML = "🔔 Suscribirse al Canal";
+    subBtn.innerHTML = "🔔 Suscribirse al Canal 1";
+  }
+
+  function unlockSubBtn2(instant) {
+    timerBox.classList.add("hidden");
+    subBtn2.disabled = false;
+    subBtn2.classList.remove("locked");
+    subBtn2.innerHTML = "🔔 Suscribirse a GameNexo11";
   }
 
   function unlockButton(instant) {
