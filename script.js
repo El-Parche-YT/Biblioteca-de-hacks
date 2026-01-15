@@ -36,23 +36,27 @@ function initCard(card) {
   // --- Eventos ---
 
   // 1. Botón Like
-  likeBtn.onclick = () => {
-    if (liked) return;
-    window.open(likeBtn.dataset.link, "_blank");
-    liked = true;
-    likeBtn.innerHTML = "✅ Like Completado";
-    startCountdown(waitTime, () => unlockSubBtn(false));
-  };
+  if (likeBtn) {
+    likeBtn.onclick = () => {
+      if (liked) return;
+      window.open(likeBtn.dataset.link, "_blank");
+      liked = true;
+      likeBtn.innerHTML = "✅ Like Completado";
+      startCountdown(waitTime, () => unlockSubBtn(false));
+    };
+  }
 
   // 2. Botón Suscribirse
-  subBtn.onclick = () => {
-    if (subscribed) return;
-    window.open(subBtn.dataset.link, "_blank");
-    subscribed = true;
-    subBtn.innerHTML = "✅ Suscripción 1 Completada";
-    // Al terminar, desbloqueamos el botón 2 (si existe) o la descarga
-    startCountdown(waitTime, () => subBtn2 ? unlockSubBtn2(false) : unlockButton(false));
-  };
+  if (subBtn) {
+    subBtn.onclick = () => {
+      if (subscribed) return;
+      window.open(subBtn.dataset.link, "_blank");
+      subscribed = true;
+      subBtn.innerHTML = "✅ Suscripción 1 Completada";
+      // Al terminar, desbloqueamos el botón 2 (si existe) o la descarga
+      startCountdown(waitTime, () => subBtn2 ? unlockSubBtn2(false) : unlockButton(false));
+    };
+  }
 
   // 3. Botón Suscribirse 2 (Nuevo)
   if (subBtn2) {
@@ -66,9 +70,11 @@ function initCard(card) {
   }
 
   // 3. Botón Descarga
-  downloadBtn.onclick = () => {
-    window.open(downloadBtn.dataset.link, "_blank");
-  };
+  if (downloadBtn) {
+    downloadBtn.onclick = () => {
+      window.open(downloadBtn.dataset.link, "_blank");
+    };
+  }
 
   // --- Funciones Auxiliares ---
 
