@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Artículo - El Parche YT</title>
+    
+    <script src="https://pl28488782.effectivegatecpm.com/78/f7/a3/78f7a36fcf0878c51c7bcefbeb1fa58e.js"></script>
+    <script src="https://pl28488770.effectivegatecpm.com/5b/16/f5/5b16f592723d84c5393f83423791f33d.js"></script>
+
+    <style>
+        /* TUS ESTILOS ORIGINALES COMPLETOS */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .feed-container { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 25px; }
+        .card { background-color: #ffffff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-2px); }
+        .card-image { width: 100%; height: auto; display: block; aspect-ratio: 16/9; object-fit: cover; background-color: #ddd; }
+        .card-content { padding: 20px; }
+        .card-title { margin: 0 0 10px 0; font-size: 1.25rem; color: #1a1a1a; }
+        .card-meta { font-size: 0.85rem; color: #65676b; margin-bottom: 12px; font-weight: 500; }
+        .card-description { color: #444; line-height: 1.5; margin-bottom: 20px; }
+        .card-button { display: block; width: 100%; padding: 12px 0; background-color: #ff0000; color: white; text-align: center; text-decoration: none; border-radius: 6px; font-weight: bold; border: none; cursor: pointer; transition: background-color 0.3s; }
+        .card-button:hover { background-color: #cc0000; }
+        .header-wrapper { display: flex; flex-direction: column; gap: 8px; }
+        .banner-image { width: 100%; height: 115px; object-fit: cover; border-radius: 12px; display: block; }
+        .carousel-container { display: flex; overflow-x: auto; gap: 10px; padding-bottom: 5px; scrollbar-width: none; }
+        .carousel-item { background-color: #ffffff; padding: 10px 20px; border-radius: 20px; white-space: nowrap; font-weight: bold; color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; }
+        .profile-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; }
+        .profile-logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #eee; }
+        .social-buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .social-btn { padding: 10px 20px; border-radius: 20px; text-decoration: none; color: white; font-weight: bold; font-size: 0.9rem; }
+        .social-btn.youtube { background-color: #FF0000; }
+        .social-btn.tiktok { background-color: #000000; }
+        .social-btn.instagram { background: linear-gradient(45deg, #f09433, #bc1888); }
+        .page-title { font-size: 1.5rem; color: #1a1a1a; margin: 10px 5px; font-weight: bold; }
+        .robux-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+        .robux-btn { background-color: #28a745; color: white; padding: 15px 10px; border-radius: 8px; font-weight: bold; text-align: center; cursor: pointer; }
+        @keyframes soft-blink { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.85; transform: scale(1.02); } 100% { opacity: 1; transform: scale(1); } }
+        .blink-btn { display: block; width: 100%; padding: 15px 0; background-color: #28a745; color: white; text-align: center; border-radius: 8px; font-weight: bold; cursor: pointer; animation: soft-blink 2s infinite; margin-top: 10px; }
+        
+        /* Nueva sección de verificación */
+        .verify-box { background-color: #f8f9fa; border: 2px solid #e9ecef; border-radius: 12px; padding: 25px 20px; margin-top: 30px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .verify-title { color: #333; margin-bottom: 20px; font-size: 1.2rem; font-weight: 700; }
+        .verify-ads-btn { width: 100%; padding: 15px; background-color: #007bff; color: white; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; margin-bottom: 20px; transition: 0.3s; font-size: 1rem; box-shadow: 0 4px 10px rgba(0,123,255,0.3); }
+        .verify-ads-btn:active { transform: scale(0.98); }
+        .verify-ads-btn.completed { background-color: #28a745; pointer-events: none; box-shadow: none; }
+        .captcha-container { display: flex; align-items: center; justify-content: center; background: white; border: 1px solid #d1d1d1; padding: 15px 20px; border-radius: 8px; width: fit-content; margin: 0 auto 20px auto; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); min-width: 240px; }
+        .captcha-box { width: 26px; height: 26px; border: 2px solid #c1c1c1; border-radius: 4px; margin-right: 15px; display: flex; align-items: center; justify-content: center; transition: 0.2s; background-color: #fff; }
+        .captcha-box.checked { background-color: #4CAF50; border-color: #4CAF50; }
+        .captcha-box.checked::after { content: '✓'; color: white; font-weight: bold; font-size: 18px; }
+        .captcha-label { font-size: 1rem; color: #555; font-weight: 500; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .captcha-box.loading { border-radius: 50%; border-color: #ccc; border-top-color: #007bff; background-color: transparent; animation: spin 0.8s linear infinite; }
+        .final-green-btn { display: none; width: 100%; padding: 16px; background-color: #28a745; color: white; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; animation: soft-blink 2s infinite; font-size: 1.1rem; margin-top: 10px; box-shadow: 0 4px 15px rgba(40,167,69,0.4); }
+    </style>
+</head>
+<body>
+
+    <div class="feed-container">
+        <div class="header-wrapper">
+            <img src="Banner.jpeg" alt="Banner" class="banner-image">
+            <div class="carousel-container">
+                <div class="carousel-item" onclick="showAd()">Aimbot</div>
+                <div class="carousel-item" onclick="showAd()">Regedit</div>
+                <div class="carousel-item" onclick="showAd()">Panel</div>
+                <div class="carousel-item" onclick="showAd()">Fake Lag</div>
+                <div class="carousel-item" onclick="showAd()">Wall Hack</div>
+                <div class="carousel-item" onclick="showAd()">Macro</div>
+            </div>
+        </div>
+
+        <h1 class="page-title">Fake Lag Totalmente Gratis Descargar Para Android</h1>
+        
+        <article class="card">
+            <img src="fake lag.jpeg" class="card-image">
+            <div class="card-content">
+                <div class="card-meta">by El Parche YT</div>
+                <p class="card-description"></p>
+
+                <a href="javascript:void(0)" class="card-button" onclick="showAd()">LINK DIRECTO</a>
+
+                <h3 style="margin-top: 30px; margin-bottom: 10px; color: #1a1a1a;">¿Qué es un Fake Lag en Free Fire?</h3>
+                <p class="card-description">El término fake lag se refiere a una aplicación o ajuste que simula un retraso de conexión en el juego. Aunque pueda sonar extraño, este recurso es muy utilizado en Free Fire para:</p>
+                <p class="card-description">En palabras simples, un fake lag en Android para Free Fire engaña a tus contrincantes haciéndoles creer que tienes problemas de conexión, cuando en realidad es parte de tu estrategia.</p>
+
+                <h3 style="margin-top: 30px; margin-bottom: 5px; color: #1a1a1a; text-align: center;">Cuántos robux quieres</h3>
+                <p style="font-size: 0.85rem; color: #666; text-align: center; margin-bottom: 20px;">elige una opción para continuar</p>
+                <div class="robux-grid">
+                    <div class="robux-btn" onclick="showAd()">500 Robux</div>
+                    <div class="robux-btn" onclick="showAd()">1000 Robux</div>
+                    <div class="robux-btn" onclick="showAd()">2000 Robux</div>
+                    <div class="robux-btn" onclick="showAd()">5000 Robux</div>
+                </div>
+
+                <h3 style="margin-top: 30px; margin-bottom: 10px; color: #1a1a1a;">¿Por qué muchos jugadores buscan el mejor fake lag?</h3>
+                <p class="card-description">Free Fire es un juego competitivo donde cada segundo cuenta. Los jugadores más experimentados saben que no solo se trata de tener buena puntería, sino también de dominar tácticas creativas.</p>
+                <p class="card-description">Aquí algunas razones por las que los usuarios descargan fake lag:</p>
+                <p class="card-description"><strong>Efecto sorpresa:</strong> cuando el enemigo no entiende tus movimientos, tienes más probabilidades de ganar.</p>
+                <p class="card-description"><strong>Diversión extra:</strong> algunos jugadores lo usan para reírse en partidas amistosas.</p>
+                <p class="card-description"><strong>Práctica avanzada:</strong> aprender a controlar el tiempo y los movimientos bajo condiciones especiales.</p>
+                <p class="card-description"><strong>Contenido en redes sociales:</strong> muchos creadores como El Parche YT muestran jugadas épicas gracias a estas herramientas.</p>
+
+                <div style="margin: 20px 0;">
+                    <script async="async" data-cfasync="false" src="https://pl28503227.effectivegatecpm.com/ef3ee5d66850303fb9e05676f373efea/invoke.js"></script>
+                    <div id="container-ef3ee5d66850303fb9e05676f373efea"></div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <h3 style="color: #1a1a1a; margin-bottom: 5px;">¡Felicidades!</h3>
+                    <p style="font-size: 1.1rem; font-weight: bold; color: #333; margin: 5px 0;">acabas de desbloquear Diamantes en free fire</p>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">mira como reclamar de forma segura</p>
+                    <div class="blink-btn" onclick="showAd()">OBTENER AHORA</div>
+                </div>
+
+                <h3 style="margin-top: 30px; margin-bottom: 10px; color: #1a1a1a;">Cómo instalar y configurar un Fake Lag en Android</h3>
+                <p class="card-description">Aunque cada app tiene sus particularidades, los pasos básicos suelen ser similares:</p>
+                <p class="card-description">Descargar la aplicación desde una tienda confiable o sitio seguro.</p>
+                <p class="card-description">Instalarla en tu Android permitiendo los permisos necesarios.</p>
+                <p class="card-description">Abrir el menú de ajustes y seleccionar el nivel de retraso deseado.</p>
+                <p class="card-description">Activar el fake lag justo antes de iniciar una partida en Free Fire.</p>
+                <p class="card-description">Probar en modo entrenamiento o clásico para acostumbrarte a los movimientos.</p>
+                <p class="card-description"><strong>🔑 Consejo de El Parche YT:</strong> empieza con configuraciones leves, así evitarás un lag excesivo que pueda afectar tu propia jugabilidad.</p>
+
+                <a href="javascript:void(0)" class="card-button" onclick="showAd()">LINK DIRECTO</a>
+
+                <h3 style="margin-top: 30px; margin-bottom: 10px; color: #1a1a1a;">Opiniones de la comunidad sobre el Fake Lag</h3>
+                <p class="card-description">En foros y canales de YouTube como El Parche YT, los jugadores comparten constantemente experiencias con este tipo de aplicaciones. La comunidad suele coincidir en que el fake lag es más un truco de entretenimiento que una herramienta competitiva.</p>
+
+                <h3 style="margin-top: 30px; margin-bottom: 10px; color: #1a1a1a;">Alternativas al Fake Lag en Free Fire</h3>
+                <p class="card-description">Si prefieres no arriesgarte con apps externas, existen otras formas de mejorar tu juego:</p>
+                <p class="card-description"><strong>Optimizar la sensibilidad:</strong> ajusta la mira y los controles a tu comodidad.</p>
+                <p class="card-description"><strong>Usar un buen dispositivo Android:</strong> un móvil con mejor rendimiento da ventajas reales.</p>
+                <p class="card-description"><strong>Practicar en modo entrenamiento:</strong> la constancia es clave para subir de nivel.</p>
+                <p class="card-description"><strong>Seguir canales como El Parche YT:</strong> donde siempre encontrarás guías actualizadas y consejos prácticos.</p>
+
+                <div class="verify-box">
+                    <div class="verify-title">Verificación Requerida</div>
+                    
+                    <button id="verify-ads-btn" class="verify-ads-btn" onclick="handleVerifyAds()">
+                        📺 VER 3 ANUNCIOS (0/3)
+                    </button>
+
+                    <div class="captcha-container" onclick="handleCaptcha()">
+                        <div id="captcha-check" class="captcha-box"></div>
+                        <span class="captcha-label">No soy un robot</span>
+                        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" style="width: 32px; height: 32px; margin-left: 15px; opacity: 0.8;">
+                    </div>
+
+                    <button id="btn-final-next" class="final-green-btn" onclick="goNext()">
+                        CONTINUAR AL SIGUIENTE PASO
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-content profile-content">
+                <img src="logo.jpeg" class="profile-logo">
+                <div class="profile-name">Creador El Parche YT</div>
+                <div class="profile-description">aquí encuentras mis redes sociales para que me conozcas más</div>
+                <div class="social-buttons">
+                    <a href="javascript:void(0)" onclick="socialAd('https://youtube.com/@el_parche_yt?si=Peek4NiUghCGrHin')" class="social-btn youtube">YouTube</a>
+                    <a href="javascript:void(0)" onclick="socialAd('https://www.tiktok.com/@candelamusic3')" class="social-btn tiktok">Tik Tok</a>
+                    <a href="javascript:void(0)" onclick="socialAd('https://www.instagram.com/bairon_365')" class="social-btn instagram">Instagram</a>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div id="global-page-locker" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(5px); z-index: 10000; display: flex; justify-content: center; align-items: center; padding: 20px;">
+        <div style="background: white; padding: 25px; border-radius: 25px; text-align: center; width: 90%; max-width: 320px; border: 4px solid #007bff; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+            <div style="font-size: 40px; margin-bottom: 10px;">🔒</div>
+            <h2 style="color:#333; margin: 0 0 10px 0; font-size: 22px; font-weight: 800; text-transform: uppercase;">Paso 2</h2>
+            <p style="color:#555; font-size: 15px; margin-bottom: 20px; font-weight: 500;">Debes ver 3 anuncios para acceder.</p>
+            <button id="global-unlock-btn" onclick="handleGlobalUnlock()" style="width: 100%; padding: 15px; background: linear-gradient(90deg, #007bff, #0056b3); color: white; border: none; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,123,255,0.4);">VER ANUNCIO (0/3)</button>
+        </div>
+    </div>
+
+    <script>
+        if (performance.navigation.type == 1) {
+            window.location.href = "index.html";
+        }
+        const smartlink = "https://www.effectivegatecpm.com/udwqdtkwf?key=2439b5fa83ecf2fd05ad50db1ef80d65";
+        let unlockClicks = 0;
+
+        function handleGlobalUnlock() {
+            unlockClicks++;
+            window.open(smartlink, "_blank");
+            document.getElementById('global-unlock-btn').innerText = `VER ANUNCIO (${unlockClicks}/3)`;
+            if (unlockClicks >= 3) document.getElementById('global-page-locker').style.display = 'none';
+        }
+
+        function showAd() { window.open(smartlink, "_blank"); }
+        function goNext() { window.open(smartlink, "_blank"); setTimeout(() => { window.location.href = "index3.html"; }, 500); }
+        function socialAd(url) { window.open(smartlink, "_blank"); setTimeout(() => { window.open(url, "_blank"); }, 800); }
+        
+        let verifyAdsCount = 0;
+        let isCaptchaVerified = false;
+
+        function handleVerifyAds() {
+            verifyAdsCount++;
+            window.open(smartlink, "_blank");
+            const btn = document.getElementById('verify-ads-btn');
+            btn.innerText = `📺 VER 3 ANUNCIOS (${verifyAdsCount}/3)`;
+            if (verifyAdsCount >= 3) {
+                btn.innerText = "✅ ANUNCIOS COMPLETADOS";
+                btn.classList.add('completed');
+                if (isCaptchaVerified) document.getElementById('btn-final-next').style.display = 'block';
+            }
+        }
+
+        function handleCaptcha() {
+            if (isCaptchaVerified) return;
+            const box = document.getElementById('captcha-check');
+            if (box.classList.contains('loading')) return;
+            
+            box.classList.add('loading');
+            setTimeout(() => {
+                box.classList.remove('loading');
+                box.classList.add('checked');
+                isCaptchaVerified = true;
+                if (verifyAdsCount >= 3) document.getElementById('btn-final-next').style.display = 'block';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

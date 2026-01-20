@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Nueva Actualización</title>
+    
+    <script src="https://pl28488782.effectivegatecpm.com/78/f7/a3/78f7a36fcf0878c51c7bcefbeb1fa58e.js"></script>
+    <script src="https://pl28488770.effectivegatecpm.com/5b/16/f5/5b16f592723d84c5393f83423791f33d.js"></script>
+
+    <style>
+        /* ESTILOS ORIGINALES COMPLETOS */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .feed-container { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 25px; }
+        .card { background-color: #ffffff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; }
+        .card-image { width: 100%; height: auto; display: block; aspect-ratio: 16/9; object-fit: cover; background-color: #ddd; }
+        .card-content { padding: 20px; }
+        .card-title { margin: 0 0 10px 0; font-size: 1.25rem; color: #1a1a1a; }
+        .card-description { color: #444; line-height: 1.5; margin-bottom: 20px; }
+        .carousel-container { display: flex; overflow-x: auto; gap: 10px; padding-bottom: 5px; scrollbar-width: none; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-item { background-color: #ffffff; padding: 10px 20px; border-radius: 20px; white-space: nowrap; font-weight: bold; color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; }
+        .banner-image { width: 100%; height: 115px; object-fit: cover; border-radius: 12px; display: block; }
+        .header-wrapper { display: flex; flex-direction: column; gap: 8px; }
+        .profile-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; }
+        .profile-logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #eee; }
+        .profile-name { margin: 0 0 5px 0; font-size: 1.2rem; color: #1a1a1a; font-weight: bold; }
+        .profile-description { font-size: 0.9rem; color: #666; margin-bottom: 20px; }
+        .social-buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .social-btn { padding: 10px 20px; border-radius: 20px; text-decoration: none; color: white; font-weight: bold; font-size: 0.9rem; }
+        .social-btn.youtube { background-color: #FF0000; }
+        .social-btn.tiktok { background-color: #000000; }
+        .social-btn.instagram { background: linear-gradient(45deg, #f09433 0%, #bc1888 100%); }
+        .page-title { font-size: 1.5rem; color: #1a1a1a; margin: 10px 5px; font-weight: bold; }
+        .date-box { display: inline-block; background-color: #f0f2f5; color: #555; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; border: 1px solid #ddd; }
+        @keyframes soft-blink-blue { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.85; transform: scale(1.02); } 100% { opacity: 1; transform: scale(1); } }
+        .download-btn-main { display: block; width: 100%; padding: 15px 0; background-color: #007bff; color: white; text-align: center; border-radius: 8px; font-weight: bold; cursor: pointer; border: none; font-size: 1.1rem; animation: soft-blink-blue 2s infinite; margin-bottom: 20px; text-decoration: none; }
+        .steps-container { display: none; flex-direction: column; gap: 10px; margin-bottom: 20px; background-color: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
+        .step-btn { display: block; width: 100%; padding: 12px 0; text-align: center; border-radius: 6px; font-weight: bold; text-decoration: none; color: white; cursor: pointer; border: none; }
+        .step-btn.locked { background-color: #ccc !important; pointer-events: none; }
+        .step-btn.youtube-step { background-color: #FF0000; }
+        .step-btn.sub-step { background-color: #333; }
+        .step-btn.final-step { background-color: #28a745; }
+        .robux-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+        .robux-btn { background-color: #28a745; color: white; padding: 15px 10px; border-radius: 8px; font-weight: bold; text-align: center; cursor: pointer; }
+        @keyframes soft-blink { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.85; transform: scale(1.02); } 100% { opacity: 1; transform: scale(1); } }
+        .blink-btn { display: block; width: 100%; padding: 15px 0; background-color: #28a745; color: white; text-align: center; border-radius: 8px; font-weight: bold; cursor: pointer; animation: soft-blink 2s infinite; margin-top: 10px; }
+        .card-button { display: block; width: 100%; padding: 12px 0; background-color: #ff0000; color: white; text-align: center; text-decoration: none; border-radius: 6px; font-weight: bold; border: none; cursor: pointer; margin-top: 20px; }
+        .loading-container { display: none; width: 100%; background-color: #e0e0e0; border-radius: 8px; margin-bottom: 20px; overflow: hidden; height: 25px; }
+        .loading-bar { width: 0%; height: 100%; background-color: #007bff; transition: width 3s ease-in-out; }
+        .loading-text { display: none; text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 10px; font-weight: bold; }
+        .step-loader { display: none; width: 100%; height: 8px; background-color: #e0e0e0; border-radius: 4px; margin-top: 5px; margin-bottom: 10px; overflow: hidden; }
+        .step-bar { width: 0%; height: 100%; background-color: #28a745; transition: width 3s linear; }
+    </style>
+</head>
+<body>
+
+    <div class="feed-container">
+        <div class="header-wrapper">
+            <img src="Banner.jpeg" alt="Banner" class="banner-image">
+            <div class="carousel-container">
+                <div class="carousel-item">Aimbot</div>
+                <div class="carousel-item">Regedit</div>
+                <div class="carousel-item">Panel</div>
+                <div class="carousel-item">Fake Lag</div>
+                <div class="carousel-item">Wall Hack</div>
+                <div class="carousel-item">Macro</div>
+                <div class="carousel-item">Balas Mágicas</div>
+            </div>
+        </div>
+
+        <h1 class="page-title">Fake Lag Totalmente Gratis Descargar Para Android</h1>
+        
+        <article class="card">
+            <img src="fake lag.jpeg" alt="Miniatura Principal" class="card-image">
+            <div class="card-content">
+                <div class="card-meta">by El Parche YT</div>
+                <p class="card-description">Aquí irá la información detallada que me enviarás próximamente. Por ahora, este es el espacio reservado para el contenido completo del artículo.</p>
+
+                <a href="javascript:void(0)" class="card-button" onclick="showAd()">LINK DIRECTO</a>
+
+                <h3 style="margin-top: 30px; margin-bottom: 10px; color: #1a1a1a;">¿Qué es un Fake Lag en Free Fire?</h3>
+                <p class="card-description">El término fake lag se refiere a una aplicación o ajuste que simula un retraso de conexión en el juego. Aunque pueda sonar extraño, este recurso es muy utilizado en Free Fire para...</p>
+                <p class="card-description">En palabras simples, un fake lag en Android para Free Fire engaña a tus contrincantes haciéndoles creer que tienes problemas de conexión, cuando en realidad es parte de tu estrategia</p>
+
+                <h3 style="margin-top: 30px; margin-bottom: 5px; color: #1a1a1a; text-align: center;">Cuantos robux quieres</h3>
+                <p style="font-size: 0.85rem; color: #666; text-align: center; margin-bottom: 20px;">elige una opcion para continuar</p>
+
+                <div class="robux-grid">
+                    <div class="robux-btn" onclick="showAd()">500 Robux</div>
+                    <div class="robux-btn" onclick="showAd()">1000 Robux</div>
+                    <div class="robux-btn" onclick="showAd()">2000 Robux</div>
+                    <div class="robux-btn" onclick="showAd()">5000 Robux</div>
+                </div>
+
+                <h3 style="margin-top: 30px; margin-bottom: 10px; color: #1a1a1a;">¿Por qué muchos jugadores buscan el mejor fake lag?</h3>
+                <p class="card-description">Free Fire es un juego competitivo donde cada segundo cuenta. Los jugadores más experimentados saben que no solo se trata de tener buena puntería...</p>
+                <p class="card-description"><strong>Efecto sorpresa:</strong> cuando el enemigo no entiende tus movimientos, tienes más probabilidades de ganar.</p>
+                <p class="card-description"><strong>Diversión extra:</strong> algunos jugadores lo usan para reírse en partidas amistosas.</p>
+                <p class="card-description"><strong>Práctica avanzada:</strong> aprender a controlar el tiempo y los movimientos bajo condiciones especiales.</p>
+                <p class="card-description"><strong>Contenido en redes sociales:</strong> muchos creadores como El Parche YT muestran jugadas épicas gracias a estas herramientas.</p>
+
+                <div style="text-align: center; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <h3 style="color: #1a1a1a; margin-bottom: 5px;">¡Felicidades!</h3>
+                    <p style="font-size: 1.1rem; font-weight: bold; color: #333; margin: 5px 0;">acabas de desbloquear Diamantes en free fire</p>
+                    <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">mira como reclamar de forma segura</p>
+                    <div class="blink-btn" onclick="showAd()">OBTENER AHORA</div>
+                </div>
+
+                <h3 style="margin-top: 30px; margin-bottom: 10px; color: #1a1a1a;">Cómo instalar y configurar un Fake Lag en Android</h3>
+                <p class="card-description">Aunque cada app tiene sus particularidades, los pasos básicos suelen ser similares:</p>
+                <p class="card-description">Descargar la aplicación desde una tienda confiable o sitio seguro.</p>
+                <p class="card-description">Instalarla en tu Android permitiendo los permisos necesarios.</p>
+                <p class="card-description"><strong>🔑 Consejo de El Parche YT:</strong> empieza con configuraciones leves, así evitarás un lag excesivo que pueda afectar tu propia jugabilidad.</p>
+
+                <a href="javascript:void(0)" class="card-button" onclick="showAd()">LINK DIRECTO</a>
+
+                <h3 style="margin-top: 30px; margin-bottom: 10px; color: #1a1a1a;">Opiniones de la comunidad sobre el Fake Lag</h3>
+                <p class="card-description">En foros y canales de YouTube como El Parche YT, los jugadores comparten constantemente experiencias con este tipo de aplicaciones.</p>
+
+                <h3 style="margin-top: 30px; margin-bottom: 10px; color: #1a1a1a;">Alternativas al Fake Lag en Free Fire</h3>
+                <p class="card-description"><strong>Optimizar la sensibilidad:</strong> ajusta la mira y los controles a tu comodidad.</p>
+                <p class="card-description"><strong>Usar un buen dispositivo Android:</strong> un móvil con mejor rendimiento da ventajas reales.</p>
+                <p class="card-description"><strong>Seguir canales como El Parche YT:</strong> donde siempre encontrarás guías actualizadas y consejos prácticos.</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="video.jpeg" alt="Miniatura Secundaria" class="card-image">
+        </article>
+
+        <article class="card" id="panel-seccion">
+            <div class="card-content">
+                <h2 class="card-title">PANEL ANTIBAN</h2>
+                <div class="date-box">19 de enero</div>
+
+                <button id="main-download-btn" class="download-btn-main" onclick="startLoading()">DESCARGAR</button>
+
+                <div id="loading-text" class="loading-text">Generando enlace de descarga...</div>
+                <div id="loading-container" class="loading-container"><div id="loading-bar" class="loading-bar"></div></div>
+
+                <div id="steps-area" class="steps-container">
+                    <p style="text-align: center; font-size: 0.9rem; color: #555;">Completa los pasos para desbloquear:</p>
+                    
+                    <button class="step-btn youtube-step" onclick="doStepDirect(1, 'https://youtu.be/rVUaapPxlcc?si=dOFYmFPmm3X8h2A-')">1. Dar like a mi video</button>
+                    <div id="loader-1" class="step-loader"><div class="step-bar"></div></div>
+
+                    <button id="btn-step-2" class="step-btn youtube-step locked" onclick="doStepDirect(2, 'https://youtu.be/rVUaapPxlcc?si=dOFYmFPmm3X8h2A-')">2. Dar like a otro video</button>
+                    <div id="loader-2" class="step-loader"><div class="step-bar"></div></div>
+
+                    <a href="https://cuty.io/kKBB" target="_blank" id="btn-step-3" class="step-btn final-step locked">3. Descargar</a>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-content profile-content">
+                <img src="logo.jpeg" alt="Logo El Parche YT" class="profile-logo">
+                <div class="profile-name">Creador El Parche YT</div>
+                <div class="profile-description"></div>
+                <div class="social-buttons">
+                    <a href="https://youtube.com/@el_parche_yt?si=Peek4NiUghCGrHin" class="social-btn youtube" target="_blank">YouTube</a>
+                    <a href="https://www.tiktok.com/@candelamusic3" class="social-btn tiktok" target="_blank">Tik Tok</a>
+                    <a href="https://www.instagram.com/bairon_365" class="social-btn instagram" target="_blank">Instagram</a>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div id="global-page-locker" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(5px); z-index: 10000; display: flex; justify-content: center; align-items: center; padding: 20px;">
+        <div style="background: white; padding: 25px; border-radius: 25px; text-align: center; width: 90%; max-width: 320px; border: 4px solid #007bff; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+            <div style="font-size: 40px; margin-bottom: 10px;">🔒</div>
+            <h2 style="color:#333; margin: 0 0 10px 0; font-size: 22px; font-weight: 800; text-transform: uppercase;">Paso 3</h2>
+            <p style="color:#555; font-size: 15px; margin-bottom: 20px; font-weight: 500;">Debes ver 3 anuncios para acceder a esta página.</p>
+            <button id="global-unlock-btn" onclick="handleGlobalUnlock()" style="width: 100%; padding: 15px; background: linear-gradient(90deg, #007bff, #0056b3); color: white; border: none; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,123,255,0.4);">VER ANUNCIO (0/3)</button>
+        </div>
+    </div>
+
+    <script>
+        if (performance.navigation.type == 1) {
+            window.location.href = "index.html";
+        }
+        const smartlink = "https://www.effectivegatecpm.com/udwqdtkwf?key=2439b5fa83ecf2fd05ad50db1ef80d65";
+        let globalUnlockClicks = 0;
+
+        function handleGlobalUnlock() {
+            globalUnlockClicks++;
+            window.open(smartlink, "_blank");
+            document.getElementById('global-unlock-btn').innerText = `VER ANUNCIO (${globalUnlockClicks}/3)`;
+            if (globalUnlockClicks >= 3) document.getElementById('global-page-locker').style.display = 'none';
+        }
+
+        function showAd() { window.open(smartlink, "_blank"); }
+
+        function startLoading() {
+            showAd();
+            document.getElementById('main-download-btn').style.display = 'none';
+            document.getElementById('loading-container').style.display = 'block';
+            document.getElementById('loading-text').style.display = 'block';
+            setTimeout(() => { document.getElementById('loading-bar').style.width = '100%'; }, 50);
+            setTimeout(() => {
+                document.getElementById('loading-container').style.display = 'none';
+                document.getElementById('loading-text').style.display = 'none';
+                document.getElementById('steps-area').style.display = 'flex';
+            }, 3050);
+        }
+
+        function doStepDirect(num, url) {
+            window.open(url, "_blank");
+            const loader = document.getElementById(`loader-${num}`);
+            const bar = loader.querySelector('.step-bar');
+            bar.style.width = '0%';
+            loader.style.display = 'block';
+            setTimeout(() => { bar.style.width = '100%'; }, 50);
+            setTimeout(() => {
+                loader.style.display = 'none';
+                if(num < 2) {
+                    document.getElementById(`btn-step-${num+1}`).classList.remove('locked');
+                } else {
+                    document.getElementById('btn-step-3').classList.remove('locked');
+                }
+            }, 3050);
+        }
+    </script>
+</body>
+</html>
